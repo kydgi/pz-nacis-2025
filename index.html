@@ -128,275 +128,41 @@
                 </ul>
             </section>
 
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Colorization</h3>
+                <ul>
+                    <li class="fragment">RGB attribute in point cloud</li>
+                    <li class="fragment">normally aerial photography.</li>
+                    <li class="fragment"><code style="color:rgb(136, 132, 255)">+change</code> and <code
+                            style="color:rgb(255, 187, 187)">-change</code>
+                    <li class="fragment">Increase and decrease.</li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/export-image.jpeg' data-background-opacity="1"
+                data-background-size="contain">
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Two points</h3>
+                <ul>
+                    <li class="fragment">Intersecting point clouds</li>
+                    <li class="fragment"><code style="color:rgb(136, 132, 255)">P<sub>t2</sub></code> and <code
+                            style="color:rgb(255, 187, 187)">P<sub>t1</sub></code></li>
+                    <li class="fragment">shown in same view.</li>
+                </ul>
+            </section>
+
+
+
             <section data-background-opacity="1" data-background-size="contain"
                 data-background-iframe='https://contig.us/hawaii/lex-change/'>
             </section>
 
-            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Opportunities</h3>
-                <ul>
-                    <li class="fragment">KyFromAbove on AWS Explorer <a
-                            href="https://kyfromabove.s3.us-west-2.amazonaws.com/index.html#imagery/obliques/Phase3/FlightInformationData_FGDB/"
-                            target="_blank">🔗</a></li>
-                    <li class="fragment">contains the images</li>
-                    <li class="fragment">but importantly: <span class="fragment">it provides metadata via spatial
-                            layers.</span> </li>
-                </ul>
-            </section>
-
-            <section data-background-opacity="1" data-background-image='./images/image-frames.jpg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-image='./images/image-attributes.jpg'
+            <section class="left" data-background-image='./images/export-image.jpeg' data-background-opacity="0.2"
                 data-background-size="contain">
-            </section>
-
-            <section data-background-opacity="1" data-background-image='./images/image-points.jpeg'>
-            </section>
-
-            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Goals</h3>
-                <ul>
-                    <li class="fragment">Make an app that runs on mobile browsers</li>
-                    <li class="fragment">with minimal tech</li>
-                    <li class="fragment">and intuitive symbology.</li>
-                    <li class="fragment">Download full-res by location.</li>
-                </ul>
-            </section>
-
-            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Tech</h3>
-                <ul>
-                    <li class="fragment">MapLibreGL JS mapping library<a
-                            href="https://maplibre.org/maplibre-gl-js/docs/" target="_blank">🔗</a></li>
-                    <li class="fragment">PMTiles for serverless vector tiles<a
-                            href="https://github.com/protomaps/PMTiles" target="_blank">🔗</a></li>
-                </ul>
-            </section>
-
-            <section data-background-opacity="1" data-background-image='./images/app-preview.jpg'>
-            </section>
-
-            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Centroids</h3>
-                <ul>
-                    <li class="fragment">Create vector tile of centroids.</li>
-                    <li class="fragment">2.2 GB becomes 300 MB.</li>
-                    <li class="fragment">Symbolize by camera orientation.</li>
-                </ul>
-            </section>
-
-            <section data-background-opacity="1"
-                data-background-iframe='https://pmtiles.io/#url=https%3A%2F%2Fnyc3.digitaloceanspaces.com%2Fastoria%2Ftiles%2Fphase3-obliques%2Fcentroids_camera_directions.pmtiles&map=15/37.98035/-84.5209&inspectFeatures=true'>
-            </section>
-
-            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Attributes needed for intuitive symbology</h3>
-            </section>
-
-            <section data-background-opacity="1" data-background-image='./images/symbols.jpg'>
-            </section>
-
-            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Time for data munging</h3>
-                <h3 class="r-fit fragment">to find which way is up</h3>
-            </section>
-
-            <section data-background-opacity="1" data-background-image='./images/image-attributes.jpg'
-                data-background-size="contain">
-            </section>
-
-            <section data-background-opacity="1" data-background-image='./images/modify-centroids.jpg'
-                data-background-size="contain">
-            </section>
-
-            <section data-background-image='./images/background.jpg' data-background-opacity="0.2" data-markdown
-                data-separator="---" data-background-color=#2D2D2D>
-                <textarea data-template>
-					### Make the lookup table
-					---
-					```python
-# List of file paths to FGDBs with image frame feature classes
-data = [
-    r"Z:\data\oblique_photos_FGDB\KY_KYAPED_2022_Season2_3IN_ImageFrameEO.gdb\KY_KYAPED_2022_Season2_3IN_ImageFrameEO",
-    r"Z:\data\oblique_photos_FGDB\KY_KYAPED_2023_Season1_3IN_ImageFrameEO.gdb\KY_KYAPED_2023_Season1_3IN_ImageFrameEO",
-    r"Z:\data\oblique_photos_FGDB\KY_KYAPED_2023_Season2_3IN_ImageFrameEO.gdb\KY_KYAPED_2023_Season2_3IN_ImageFrameEO",
-    r"Z:\data\oblique_photos_FGDB\KY_KYAPED_2024_Season1_3IN_ImageFrameEO.gdb\KY_KYAPED_2024_Season1_3IN_ImageFrameEO"
-]
-					```
-
-					--- 
-
-					```py
-					# Make the empty dictionary to hold results
-					fwdFlightDirection = {
-    "total": 0,
-    "North": 0,
-    "South": 0,
-    "Other": 0
-}
-					```
-					---
-					```python 
-# Loop through each FGDB layer and calculate direction from Kappa
-					for a in data:
-    with arcpy.da.SearchCursor(a, ["ID","Kappa"]) as cursor:
-        with arcpy.da.InsertCursor("flight_shot_direction", ["ID", "Direction"]) as insert_cursor:
-            for i, row in enumerate(cursor):
-                id_parts = row[0].split('/')
-                direction = id_parts[1].split('_')[0]
-                flight = id_parts[1].split('_')[1]
-                shot = id_parts[1].split('_')[2]
-                group = f'{flight}_{shot}'
-                kappa = row[1]
-                fwdFlightDirection["total"] += 1
-                if group not in fwdFlightDirection:
-                    if kappa > -20 and kappa < 20:
-                        fwdFlightDirection[group] = "North"
-                        fwdFlightDirection["North"] += 1
-                    elif kappa > 160 and kappa < 200:
-                        fwdFlightDirection[group] = "South"
-                        fwdFlightDirection["South"] += 1
-                    elif kappa > -200 and kappa < -160:
-                        fwdFlightDirection[group] = "South"
-                        fwdFlightDirection["South"] += 1
-                    else:
-                        fwdFlightDirection[group] = "Other"
-                        fwdFlightDirection["Other"] += 1
-					```
-					</textarea>
-            </section>
-
-            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Now we know the flight directions</h3>
-            </section>
-
-            <section class="left" data-background-image='./images/all-centroids.jpg' data-background-opacity="1"
-                data-background-size="contain">
-            </section>
-
-            <section class="left" data-background-image='./images/all-centroids-2.jpg' data-background-opacity="1"
-                data-background-size="contain">
-            </section>
-
-            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Preview?</h3>
-                <ul>
-                    <li class="fragment">TIFFs in the browser?</li>
-                    <li class="fragment">Thankfully: Cloud Optimized GeoTIFFs (COGs)</li>
-                    <li class="fragment">and geotiff.js <a href="https://github.com/geotiffjs/geotiff.js#readme"
-                            target="_blank">🔗</a></li>
-                </ul>
-            </section>
-
-            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Process</h3>
-                <ul>
-                    <li class="fragment">Resample to max width of 4k</li>
-                    <li class="fragment">at runtime in browser</li>
-                    <li class="fragment">and render to browser Canvas element.</li>
-                    <li class="fragment">Hey, works in my browser!</li>
-                </ul>
-            </section>
-
-            <section data-background-opacity="1" data-background-image='./images/cog.jpg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-image='./images/cog-preview.jpg'>
-            </section>
-
-            <section class="center" data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Live demo</h3>
-                <ul>
-                    <li class="fragment"><a href="https://boydx.github.io/phase-3-oblique-centroids"
-                            target="_blank">boydx.github.io/phase-3-oblique-centroids</a></li>
-                </ul>
-            </section>
-
-            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
-                <h3 class="r-fit">Where's Wally?</h3>
-            </section>
-
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/chickasaw.jpeg'>
-            </section>
-
-            <section class='left' data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/csp-01.jpeg'>
-            </section>
-
-            <section class='left' data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/csp-02.jpeg'>
-            </section>
-
-            <section class='left' data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/csp-03.jpg'>
-            </section>
-
-
-            <!-- <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/jdm.jpg'>
-                <div class="fragment fade-out center image-title">
-                    <h3>Jefferson Davis Monument</h3>
-                    <h4>Fairview, Ky, 1924</h4>
-                </div>
-            </section> -->
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/lincoln.jpg'>
-            </section>
-
-            <section data-background-image='./images/obliques/mountains.jpg'>
-            </section>
-
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/bh-02.jpeg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/bh-03.jpeg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/yahoo.jpg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/valley.jpeg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/nat-brg.jpeg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/hens-01.jpeg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/hens-02.jpeg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/white-rocks.jpeg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/gap-01.jpeg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/gap-02.jpeg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/gap-03.jpeg'>
-            </section>
-
-            <section data-background-opacity="1" data-background-size="contain"
-                data-background-image='./images/obliques/hens-end.jpeg'>
+                <h3>ArcPy notebook <a
+                        href="https://github.com/kydgi/pz-nacis-2025/blob/main/process_DSM_change.ipynb">🔗</a></h3>
             </section>
 
 
