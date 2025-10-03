@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>MapLibre GL Raster Basemap Toggle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/maplibre-gl@^5.8.0/dist/maplibre-gl.js"></script>
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        #basemap-select {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1;
+            background: white;
+            padding: 6px;
+            border-radius: 4px;
+            font-size: 16px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <select id="basemap-select">
+        <option value="photo">Phase 3 Photography</option>
+        <option value="elev">Phase 2 Elevation</option>
+    </select>
+    <div id="map"></div>
+    <link href="https://unpkg.com/maplibre-gl@^5.8.0/dist/maplibre-gl.css" rel="stylesheet" />
+    <script>
+        // Raster sources
+        const sources = {
+            photo: {
+                type: 'raster',
+                tiles: [
+                    'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_Imagery_Phase3_3IN_WGS84WM/MapServer/tile/{z}/{y}/{x}'
+                ],
+                tileSize: 256,
+                attribution: 'KyFromAbove, DGI'
+            },
+            elev: {
+                type: 'raster',
+                tiles: [
+                    'https://kygisserver.ky.gov/arcgis/rest/services/WGS84WM_Services/Ky_MultiDirectional_Hillshade_WGS84WM/MapServer/tile/{z}/{y}/{x}'
+                ],
+                tileSize: 256,
+                attribution: 'KyFromAbove, DGI'
+            }
+        };
+
+        // Initial map style
+        function getStyle(active) {
+            return {
+                version: 8,
+                sources: {
+                    [active]: sources[active]
+                },
+                layers: [
+                    {
+                        id: active + '-raster',
+                        type: 'raster',
+                        source: active,
+                        minzoom: 0,
+                        maxzoom: 22
+                    }
+                ]
+            };
+        }
+
+        // Initialize map
+        const map = new maplibregl.Map({
+            container: 'map',
+            style: getStyle('photo'),
+            center: [-85.7585, 38.2527],
+            zoom: 10
+        });
+
+        // Basemap toggle
+        document.getElementById('basemap-select').addEventListener('change', function (e) {
+            const selected = e.target.value;
+            map.setStyle(getStyle(selected));
+        });
+    </script>
+</body>
+
+</html>

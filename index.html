@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Visualizing landscape change with KyFromAbove lidar point clouds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Edu+SA+Beginner:wght@400..700&display=swap"
+        rel="stylesheet">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hubot+Sans:ital,wght@0,200..900;1,200..900&display=swap"
+        rel="stylesheet"> -->
+
+    <link rel="stylesheet" href="https://uky-gis.github.io/geo509/slides/dist/reset.css" />
+    <link rel="stylesheet" href="https://uky-gis.github.io/geo509/slides/dist/reveal.css" />
+    <link rel="stylesheet" href="https://uky-gis.github.io/geo509/slides/dist/theme/league-109.css" id="theme" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="https://uky-gis.github.io/geo509/slides/dist/plugin/highlight/zenburn.css"
+        id="highlight-theme" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="reveal">
+        <!-- <div class="top-module">
+            <a target='_blank' href="https://github.com/boydx/inside-outside">Repo</a>
+        </div> -->
+        <div class="slides">
+            <section data-pre-load data-background-image="images/background.jpg" data-background-opacity="0.2">
+                <span class="title-font">Visualizing Change</span>
+                <h5 class="sub-title-font">KyFromAbove lidar point clouds</h5>
+                <h4>@<a href="https://boyd.xyz/b" target="_blank">boyd.xyz/b</a></h4>
+                <!-- <h2>Welcome</h2> -->
+                <div class="ll" style="opacity:60%;">
+                    Oblique image of downtown Louisville. Find more
+                    <a href="https://boydx.github.io/phase-3-oblique-centroids" target="_blank">Ky obliques</a>
+                </div>
+                <div class='lr'>NACIS Conference, October 17, 2025</div>
+            </section>
+            <section class='left' data-background-image="images/background.jpg" data-background-opacity="0.2">
+                <h3>Boyd Shearer</h3>
+                <ul>
+                    <li class='fragment'>
+                        Senior Lecturer, UKy Geography <a href="https://geography.as.uky.edu/users/blshea1"
+                            target="_blank">🔗</a>
+                    </li>
+                    <li class='fragment'>
+                        Assistant Director, Ky DGI (yesterday) <a href="https://kyfromabove.ky.gov/"
+                            target="_blank">🔗</a>
+                    </li>
+                    <li class='fragment'>
+                        outrageGIS mapping <a href="https://www.outragegis.com" target="_blank">🔗</a>
+                    </li>
+                </ul>
+            </section>
+
+
+
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">KyFromAbove</h3>
+                <ul>
+                    <li class="fragment">KY Aerial Photo & Elev Data Prog (KYAPED)</li>
+                    <li class="fragment">started in 2010 and ongoing.</li>
+                    <li class="fragment">Multiple funding partners <a class="fragment"
+                            href="https://kyfromabove.ky.gov/#Partners" target="_blank">🔗</a></li>
+                    <li class="fragment">common goal: <span class="fragment">statewide<span class="fragment">, open
+                                data.</span></span></li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Data & vintages</h3>
+                <ul>
+                    <li class="fragment">DEMs <a class="fragment"
+                            href="https://kyfromabove.ky.gov/maps/785e6040154e4050bda80049fc12d4a6/explore?location=38.243863%2C-85.685234%2C14"
+                            target="_blank">🔗</a> <span class="fragment">from Lidar <a class="fragment"
+                                href="https://kyfromabove.ky.gov/maps/b5ff91df6309491090c20333c8f58f52/explore?location=37.792723%2C-85.629924%2C-1">🔗</a></span>
+                        <ul>
+                            <li class="fragment">Phase 1: 2010-2017</li>
+                            <li class="fragment">Phase 2: 2019-2024</li>
+                            <li class="fragment">Phase 3: 2023...</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Photography <a class="fragment"
+                            href="https://kyfromabove.s3.us-west-2.amazonaws.com/index.html#imagery/orthos/"
+                            target="_blank">🔗</a>
+                        <ul>
+                            <li class="fragment">Phase 1: 2012-2014</li>
+                            <li class="fragment">Phase 2: 2019-2022</li>
+                            <li class="fragment">Phase 3: 2022-2024</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Resolution</h3>
+                <ul>
+                    <li class="fragment">Highest resolution open data for Ky.</li>
+                    <li class="fragment">2-ft DEMs <span class="fragment">and 3-in photography</span></li>
+                    <li class="fragment">Gives neighborhood context.</li>
+                </ul>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-iframe='./map/index.html'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-iframe='https://contig.us/hawaii/uky-campus/'>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">What about change?</h3>
+                <ul>
+                    <li class="fragment">Point cloud has above ground features</li>
+                    <li class="fragment">from two different vintages.</li>
+                    <li class="fragment"><code
+                            style="color:rgb(252, 255, 200)">change = P<sub>t2</sub> - P<sub>t1</sub></code></li>
+                    <li class="fragment">But how to visualize?</li>
+                </ul>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-iframe='https://contig.us/hawaii/lex-change/'>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Opportunities</h3>
+                <ul>
+                    <li class="fragment">KyFromAbove on AWS Explorer <a
+                            href="https://kyfromabove.s3.us-west-2.amazonaws.com/index.html#imagery/obliques/Phase3/FlightInformationData_FGDB/"
+                            target="_blank">🔗</a></li>
+                    <li class="fragment">contains the images</li>
+                    <li class="fragment">but importantly: <span class="fragment">it provides metadata via spatial
+                            layers.</span> </li>
+                </ul>
+            </section>
+
+            <section data-background-opacity="1" data-background-image='./images/image-frames.jpg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-image='./images/image-attributes.jpg'
+                data-background-size="contain">
+            </section>
+
+            <section data-background-opacity="1" data-background-image='./images/image-points.jpeg'>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Goals</h3>
+                <ul>
+                    <li class="fragment">Make an app that runs on mobile browsers</li>
+                    <li class="fragment">with minimal tech</li>
+                    <li class="fragment">and intuitive symbology.</li>
+                    <li class="fragment">Download full-res by location.</li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Tech</h3>
+                <ul>
+                    <li class="fragment">MapLibreGL JS mapping library<a
+                            href="https://maplibre.org/maplibre-gl-js/docs/" target="_blank">🔗</a></li>
+                    <li class="fragment">PMTiles for serverless vector tiles<a
+                            href="https://github.com/protomaps/PMTiles" target="_blank">🔗</a></li>
+                </ul>
+            </section>
+
+            <section data-background-opacity="1" data-background-image='./images/app-preview.jpg'>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Centroids</h3>
+                <ul>
+                    <li class="fragment">Create vector tile of centroids.</li>
+                    <li class="fragment">2.2 GB becomes 300 MB.</li>
+                    <li class="fragment">Symbolize by camera orientation.</li>
+                </ul>
+            </section>
+
+            <section data-background-opacity="1"
+                data-background-iframe='https://pmtiles.io/#url=https%3A%2F%2Fnyc3.digitaloceanspaces.com%2Fastoria%2Ftiles%2Fphase3-obliques%2Fcentroids_camera_directions.pmtiles&map=15/37.98035/-84.5209&inspectFeatures=true'>
+            </section>
+
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Attributes needed for intuitive symbology</h3>
+            </section>
+
+            <section data-background-opacity="1" data-background-image='./images/symbols.jpg'>
+            </section>
+
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Time for data munging</h3>
+                <h3 class="r-fit fragment">to find which way is up</h3>
+            </section>
+
+            <section data-background-opacity="1" data-background-image='./images/image-attributes.jpg'
+                data-background-size="contain">
+            </section>
+
+            <section data-background-opacity="1" data-background-image='./images/modify-centroids.jpg'
+                data-background-size="contain">
+            </section>
+
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2" data-markdown
+                data-separator="---" data-background-color=#2D2D2D>
+                <textarea data-template>
+					### Make the lookup table
+					---
+					```python
+# List of file paths to FGDBs with image frame feature classes
+data = [
+    r"Z:\data\oblique_photos_FGDB\KY_KYAPED_2022_Season2_3IN_ImageFrameEO.gdb\KY_KYAPED_2022_Season2_3IN_ImageFrameEO",
+    r"Z:\data\oblique_photos_FGDB\KY_KYAPED_2023_Season1_3IN_ImageFrameEO.gdb\KY_KYAPED_2023_Season1_3IN_ImageFrameEO",
+    r"Z:\data\oblique_photos_FGDB\KY_KYAPED_2023_Season2_3IN_ImageFrameEO.gdb\KY_KYAPED_2023_Season2_3IN_ImageFrameEO",
+    r"Z:\data\oblique_photos_FGDB\KY_KYAPED_2024_Season1_3IN_ImageFrameEO.gdb\KY_KYAPED_2024_Season1_3IN_ImageFrameEO"
+]
+					```
+
+					--- 
+
+					```py
+					# Make the empty dictionary to hold results
+					fwdFlightDirection = {
+    "total": 0,
+    "North": 0,
+    "South": 0,
+    "Other": 0
+}
+					```
+					---
+					```python 
+# Loop through each FGDB layer and calculate direction from Kappa
+					for a in data:
+    with arcpy.da.SearchCursor(a, ["ID","Kappa"]) as cursor:
+        with arcpy.da.InsertCursor("flight_shot_direction", ["ID", "Direction"]) as insert_cursor:
+            for i, row in enumerate(cursor):
+                id_parts = row[0].split('/')
+                direction = id_parts[1].split('_')[0]
+                flight = id_parts[1].split('_')[1]
+                shot = id_parts[1].split('_')[2]
+                group = f'{flight}_{shot}'
+                kappa = row[1]
+                fwdFlightDirection["total"] += 1
+                if group not in fwdFlightDirection:
+                    if kappa > -20 and kappa < 20:
+                        fwdFlightDirection[group] = "North"
+                        fwdFlightDirection["North"] += 1
+                    elif kappa > 160 and kappa < 200:
+                        fwdFlightDirection[group] = "South"
+                        fwdFlightDirection["South"] += 1
+                    elif kappa > -200 and kappa < -160:
+                        fwdFlightDirection[group] = "South"
+                        fwdFlightDirection["South"] += 1
+                    else:
+                        fwdFlightDirection[group] = "Other"
+                        fwdFlightDirection["Other"] += 1
+					```
+					</textarea>
+            </section>
+
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Now we know the flight directions</h3>
+            </section>
+
+            <section class="left" data-background-image='./images/all-centroids.jpg' data-background-opacity="1"
+                data-background-size="contain">
+            </section>
+
+            <section class="left" data-background-image='./images/all-centroids-2.jpg' data-background-opacity="1"
+                data-background-size="contain">
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Preview?</h3>
+                <ul>
+                    <li class="fragment">TIFFs in the browser?</li>
+                    <li class="fragment">Thankfully: Cloud Optimized GeoTIFFs (COGs)</li>
+                    <li class="fragment">and geotiff.js <a href="https://github.com/geotiffjs/geotiff.js#readme"
+                            target="_blank">🔗</a></li>
+                </ul>
+            </section>
+
+            <section class="left" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Process</h3>
+                <ul>
+                    <li class="fragment">Resample to max width of 4k</li>
+                    <li class="fragment">at runtime in browser</li>
+                    <li class="fragment">and render to browser Canvas element.</li>
+                    <li class="fragment">Hey, works in my browser!</li>
+                </ul>
+            </section>
+
+            <section data-background-opacity="1" data-background-image='./images/cog.jpg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-image='./images/cog-preview.jpg'>
+            </section>
+
+            <section class="center" data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Live demo</h3>
+                <ul>
+                    <li class="fragment"><a href="https://boydx.github.io/phase-3-oblique-centroids"
+                            target="_blank">boydx.github.io/phase-3-oblique-centroids</a></li>
+                </ul>
+            </section>
+
+            <section data-background-image='./images/background.jpg' data-background-opacity="0.2">
+                <h3 class="r-fit">Where's Wally?</h3>
+            </section>
+
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/chickasaw.jpeg'>
+            </section>
+
+            <section class='left' data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/csp-01.jpeg'>
+            </section>
+
+            <section class='left' data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/csp-02.jpeg'>
+            </section>
+
+            <section class='left' data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/csp-03.jpg'>
+            </section>
+
+
+            <!-- <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/jdm.jpg'>
+                <div class="fragment fade-out center image-title">
+                    <h3>Jefferson Davis Monument</h3>
+                    <h4>Fairview, Ky, 1924</h4>
+                </div>
+            </section> -->
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/lincoln.jpg'>
+            </section>
+
+            <section data-background-image='./images/obliques/mountains.jpg'>
+            </section>
+
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/bh-02.jpeg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/bh-03.jpeg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/yahoo.jpg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/valley.jpeg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/nat-brg.jpeg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/hens-01.jpeg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/hens-02.jpeg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/white-rocks.jpeg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/gap-01.jpeg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/gap-02.jpeg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/gap-03.jpeg'>
+            </section>
+
+            <section data-background-opacity="1" data-background-size="contain"
+                data-background-image='./images/obliques/hens-end.jpeg'>
+            </section>
+
+
+            <section data-pre-load
+                data-background-image="https://www.outragegis.com/weather/img/animation/yesterday/Dome.gif"
+                data-background-opacity="0.4">
+                <h5>Thank you</h5>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://uky-gis.github.io/geo509/slides/dist/reveal.js"></script>
+    <script src="https://uky-gis.github.io/geo509/slides/dist/plugin/notes/notes.js"></script>
+    <script src="https://uky-gis.github.io/geo509/slides/dist/plugin/markdown/markdown.js"></script>
+    <script src="https://uky-gis.github.io/geo509/slides/dist/plugin/highlight/highlight.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            backgroundTransition: "fade",
+            // Transition style
+            transition: "fade", // none/fade/slide/convex/concave/zoom
+
+            // Transition speed
+            transitionSpeed: "fast", // default/fast/slow
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+        });
+    </script>
+</body>
+
+</html>
